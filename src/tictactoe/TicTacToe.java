@@ -1,36 +1,65 @@
 package tictactoe;
 
 import tictactoe.enums.GameState;
-import tictactoe.players.BaseAI;
-import tictactoe.players.EasyAI;
-import tictactoe.players.Human;
-import tictactoe.players.Player;
+import tictactoe.enums.PlayerType;
+import tictactoe.players.*;
 
 public class TicTacToe {
+    private static TicTacToe gameInstance;
     private final GameBoard board;
     private GameState gameState;
     private final RuleAnalyzer rules;
-    private final Player playerX = new Human();
+    private final Player playerX;
     private final Player playerY;
+    private String lastMoveDiffLevel;
 
-
-    TicTacToe(String initialBoardState, BaseAI difficulty) {
-        playerY = difficulty;
+    private TicTacToe(String initialBoardState, Player x, Player o) {
+        playerX = x;
+        playerY = o;
         this.board = new GameBoard(initialBoardState);
         rules = new RuleAnalyzer(board);
         updateGameState();
     }
 
-    TicTacToe(String initialBoardState) {
-        this(initialBoardState, new EasyAI());
+    public static TicTacToe startNewGame(PlayerType x, PlayerType o) {
+        if (gameInstance != null && gameInstance.isInProgress()) {
+            System.out.println("ERROR! Cannot create a new game when a game is already in progress");
+            return null;
+        }
+        final String EMPTY_BOARD = "         ";
+        Player xPlayer = createPlayerObj(x);
+        Player yPlayer = createPlayerObj(o);
+        gameInstance = new TicTacToe(EMPTY_BOARD, xPlayer, yPlayer);
+        return gameInstance;
     }
 
-    TicTacToe() {
-        this("         ");
+    private static Player createPlayerObj(PlayerType x) {
+        switch(x) {
+            case TRIVIAL:
+                return new TrivialAI();
+            case EASY:
+                return new EasyAI();
+            case MEDIUM:
+                return new MediumAI();
+            case CHAMPION:
+                return new ChampionAI();
+            case HUMAN:
+                return new Human();
+            default:
+                return null;
+        }
     }
 
     String getStateMsg() {
         return gameState.getMsg();
+    }
+
+    public String getLastMoveDiffLevel() {
+        return lastMoveDiffLevel;
+    }
+
+    public void setLastMoveDiffLevel(String lastMoveDiffLevel) {
+        this.lastMoveDiffLevel = lastMoveDiffLevel;
     }
 
     boolean isInProgress() {
@@ -69,10 +98,6 @@ public class TicTacToe {
         return board.getBoardCells();
     }
 
-//    char getCurrentMovePiece() {
-//        return rules.whoGoesNext();
-//    }
-
     public boolean nextTurnIsHuman() {
         if (board.isNextMoveX()) {
             return checkPlayer(playerX);
@@ -85,8 +110,13 @@ public class TicTacToe {
         if (player instanceof Human) {
             return true;
         } else {
-            player.makeMove(this);
-            return false;
+            if (player instanceof BaseAI) {
+                BaseAI ai = (BaseAI) player;
+                ai.makeMove(this);
+                setLastMoveDiffLevel(ai.getName());
+                return false;
+            }
         }
+        throw new IllegalStateException();
     }
 }

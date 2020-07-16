@@ -1,5 +1,6 @@
 package tictactoe;
 
+import tictactoe.enums.PlayerType;
 import tictactoe.enums.UserMoveResult;
 
 import java.util.Scanner;
@@ -9,14 +10,14 @@ public class UserInterface {
     private TicTacToe game;
 
     public void start() {
-        game = new TicTacToe();
-        // easy to change first move to X or O
+        game = TicTacToe.startNewGame(PlayerType.HUMAN, PlayerType.EASY);
         renderGameBoard();
         while (game.isInProgress()) {
             if (game.nextTurnIsHuman()) {
                 getMoveCoordinatesFromUser();
             } else {
-                System.out.println("Making move level");
+                System.out.printf("Making move level \"%s\"\n",
+                        game.getLastMoveDiffLevel());
                 renderGameBoard();
             }
         }

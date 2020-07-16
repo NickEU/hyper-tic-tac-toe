@@ -1,8 +1,9 @@
 package tictactoe.enums;
 
-public enum SkynetLevel {
+public enum PlayerType {
     TRIVIAL,
     EASY,
     MEDIUM,
     CHAMPION,
+    HUMAN,
 }
