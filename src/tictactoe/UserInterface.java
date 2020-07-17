@@ -17,7 +17,7 @@ public class UserInterface {
             if (rdyToLeave) {
                 break;
             }
-            startGame();
+            startNewGame();
         }
     }
 
@@ -43,6 +43,7 @@ public class UserInterface {
                 System.out.println(mainLoopErrorMsg);
             } else {
                 game = TicTacToe.startNewGame(playerX, playerY);
+                resetUserInputArgs();
                 return false;
             }
         }
@@ -66,15 +67,13 @@ public class UserInterface {
                 }
                 break;
             default:
-                playerX = null;
-                playerY = null;
+                resetUserInputArgs();
                 return true;
         }
         return false;
     }
 
-    public void startGame() {
-        //game = TicTacToe.startNewGame(PlayerType.HUMAN, PlayerType.EASY);
+    public void startNewGame() {
         renderGameBoard();
         while (game.isInProgress()) {
             if (game.nextTurnIsHuman()) {
@@ -131,5 +130,10 @@ public class UserInterface {
             System.out.printf("| %c %c %c |\n", row[0], row[1], row[2]);
         }
         System.out.println(DECOR_BORDER);
+    }
+
+    private void resetUserInputArgs() {
+        playerX = null;
+        playerY = null;
     }
 }
