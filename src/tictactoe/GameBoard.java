@@ -1,8 +1,9 @@
 package tictactoe;
 
 public class GameBoard {
-    static final char X_CHAR = 'X';
-    static final char O_CHAR = 'O';
+    public static final char X_CHAR = 'X';
+    public static final char O_CHAR = 'O';
+    public static final char EMPTY_CELL = ' ';
     private final char[][] boardCells;
     private final XOChar curMovePiece = new XOChar(X_CHAR);
 

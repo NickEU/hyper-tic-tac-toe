@@ -3,17 +3,24 @@ package tictactoe;
 import static tictactoe.GameBoard.O_CHAR;
 import static tictactoe.GameBoard.X_CHAR;
 
-class RuleAnalyzer {
+public class RuleAnalyzer {
     private final GameBoard board;
     private final int SIZE;
+    private char[][] cells;
 
     RuleAnalyzer(GameBoard board) {
         this.board = board;
         SIZE = getCells().length;
     }
 
+    public RuleAnalyzer(char[][] cells) {
+        this.board = null;
+        this.cells = cells.clone();
+        this.SIZE = cells.length;
+    }
+
     private char[][] getCells() {
-        return board.getBoardCells();
+        return board == null ? cells : board.getBoardCells();
     }
 
     boolean illegalXODifference() {
@@ -44,7 +51,7 @@ class RuleAnalyzer {
         return charHasWon(O_CHAR);
     }
 
-    private boolean charHasWon(char xo) {
+    public boolean charHasWon(char xo) {
         return rowsHaveWinner(xo) || diagonalsHaveWinner(xo) || columnsHaveWinner(xo);
     }
 

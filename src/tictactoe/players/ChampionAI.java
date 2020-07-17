@@ -3,7 +3,8 @@ package tictactoe.players;
 import tictactoe.Coordinate;
 
 public class ChampionAI extends BaseAI {
-    public ChampionAI() {
+    public ChampionAI(char xOrO) {
+        super(xOrO);
         this.name = "champion";
     }
 

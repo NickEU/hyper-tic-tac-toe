@@ -10,6 +10,9 @@ import tictactoe.players.MediumAI;
 import tictactoe.players.Player;
 import tictactoe.players.TrivialAI;
 
+import static tictactoe.GameBoard.O_CHAR;
+import static tictactoe.GameBoard.X_CHAR;
+
 
 public class TicTacToe {
     private static TicTacToe gameInstance;
@@ -34,24 +37,24 @@ public class TicTacToe {
             return null;
         }
         final String EMPTY_BOARD = "         ";
-        Player xPlayer = createPlayerObj(x);
-        Player yPlayer = createPlayerObj(o);
+        Player xPlayer = createPlayerObj(x, X_CHAR);
+        Player yPlayer = createPlayerObj(o, O_CHAR);
         gameInstance = new TicTacToe(EMPTY_BOARD, xPlayer, yPlayer);
         return gameInstance;
     }
 
-    private static Player createPlayerObj(PlayerType x) {
+    private static Player createPlayerObj(PlayerType x, char xOrO) {
         switch(x) {
             case TRIVIAL:
-                return new TrivialAI();
+                return new TrivialAI(xOrO);
             case EASY:
-                return new EasyAI();
+                return new EasyAI(xOrO);
             case MEDIUM:
-                return new MediumAI();
+                return new MediumAI(xOrO);
             case CHAMPION:
-                return new ChampionAI();
+                return new ChampionAI(xOrO);
             case HUMAN:
-                return new Human();
+                return new Human(xOrO);
             default:
                 return null;
         }
