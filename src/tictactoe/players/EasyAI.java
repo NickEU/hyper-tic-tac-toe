@@ -2,7 +2,11 @@ package tictactoe.players;
 
 import tictactoe.Coordinate;
 
+import java.util.Random;
+
 public class EasyAI extends BaseAI {
+    protected Random rnd = new Random();
+
     public EasyAI() {
         this.name = "easy";
     }
@@ -14,7 +18,7 @@ public class EasyAI extends BaseAI {
 
     @Override
     protected Coordinate plotNextMove(char[][] cells) {
-        // to be implemented
-        return new Coordinate(2, 2);
+        final int bound = 3;
+        return new Coordinate(rnd.nextInt(bound), rnd.nextInt(bound));
     }
 }
