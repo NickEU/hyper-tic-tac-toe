@@ -6,7 +6,7 @@ public class TrivialAI extends BaseAI {
     public TrivialAI() {
         this.name = "trivial";
     }
-    
+
     @Override
     public String getName() {
         return name;
@@ -14,7 +14,7 @@ public class TrivialAI extends BaseAI {
 
     @Override
     protected Coordinate plotNextMove(char[][] cells) {
-        // to be implemented
-        return new Coordinate(2, 2);
+        // do trivial stuff
+        return super.plotNextMove(cells);
     }
 }

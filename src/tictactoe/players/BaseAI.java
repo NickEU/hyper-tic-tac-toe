@@ -3,7 +3,10 @@ package tictactoe.players;
 import tictactoe.Coordinate;
 import tictactoe.TicTacToe;
 
+import java.util.Random;
+
 public class BaseAI extends Player {
+    protected Random rnd = new Random();
     protected String name = "base";
 
     public String getName() {
@@ -17,11 +20,10 @@ public class BaseAI extends Player {
             Coordinate moveCoords = plotNextMove(cells);
             madeTheMove = game.tryMakeMove(moveCoords);
         } while (!madeTheMove);
-
     }
 
     protected Coordinate plotNextMove(char[][] cells) {
-        System.out.println("OOPS!");
-        return new Coordinate(1, 1);
+        final int bound = 3;
+        return new Coordinate(rnd.nextInt(bound), rnd.nextInt(bound));
     }
 }

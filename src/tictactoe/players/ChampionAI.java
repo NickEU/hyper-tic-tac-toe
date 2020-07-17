@@ -14,7 +14,7 @@ public class ChampionAI extends BaseAI {
 
     @Override
     protected Coordinate plotNextMove(char[][] cells) {
-        // to be implemented
-        return new Coordinate(2, 2);
+        // do champion stuff
+        return super.plotNextMove(cells);
     }
 }
