@@ -55,25 +55,34 @@ public class UserInterface {
 
     private boolean userArgParseFailed(String player) {
         boolean isFirstArg = playerX == null;
+        PlayerType userChosen;
         switch (player) {
             case "user":
-                if (isFirstArg) {
-                    playerX = PlayerType.HUMAN;
-                } else {
-                    playerY = PlayerType.HUMAN;
-                }
+                userChosen = PlayerType.HUMAN;
+                break;
+            case "trivial":
+                userChosen = PlayerType.TRIVIAL;
                 break;
             case "easy":
-                if (isFirstArg) {
-                    playerX = PlayerType.EASY;
-                } else {
-                    playerY = PlayerType.EASY;
-                }
+                userChosen = PlayerType.EASY;
+                break;
+            case "medium":
+                userChosen = PlayerType.MEDIUM;
+                break;
+            case "champion":
+                userChosen = PlayerType.CHAMPION;
                 break;
             default:
                 resetUserInputArgs();
                 return true;
         }
+
+        if (isFirstArg) {
+            playerX = userChosen;
+        } else {
+            playerY = userChosen;
+        }
+
         return false;
     }
 
