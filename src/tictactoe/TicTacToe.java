@@ -2,7 +2,14 @@ package tictactoe;
 
 import tictactoe.enums.GameState;
 import tictactoe.enums.PlayerType;
-import tictactoe.players.*;
+import tictactoe.players.BaseAI;
+import tictactoe.players.ChampionAI;
+import tictactoe.players.EasyAI;
+import tictactoe.players.Human;
+import tictactoe.players.MediumAI;
+import tictactoe.players.Player;
+import tictactoe.players.TrivialAI;
+
 
 public class TicTacToe {
     private static TicTacToe gameInstance;
