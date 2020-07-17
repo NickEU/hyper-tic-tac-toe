@@ -36,15 +36,19 @@ public class UserInterface {
                 continue;
             }
 
-            String argX = userInput[1];
-            String argY = userInput[2];
+            if ("start".equals(cmd)) {
+                String argX = userInput[1];
+                String argY = userInput[2];
 
-            if (userArgParseFailed(argX) || userArgParseFailed(argY)) {
-                System.out.println(mainLoopErrorMsg);
+                if (userArgParseFailed(argX) || userArgParseFailed(argY)) {
+                    System.out.println(mainLoopErrorMsg);
+                } else {
+                    game = TicTacToe.startNewGame(playerX, playerY);
+                    resetUserInputArgs();
+                    return false;
+                }
             } else {
-                game = TicTacToe.startNewGame(playerX, playerY);
-                resetUserInputArgs();
-                return false;
+                System.out.println(mainLoopErrorMsg);
             }
         }
     }
