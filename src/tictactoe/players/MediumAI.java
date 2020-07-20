@@ -26,14 +26,14 @@ public class MediumAI extends BaseAI {
         if (potentialMove != null) {
             return potentialMove;
         }
-        // If the opponent can win in one move,
-        // it plays the third itself to block the opponent to win.
+        // If the opponent can win on the next move,
+        // it blocks the opponent from winning.
         char opponent = piece == X_CHAR ? O_CHAR : X_CHAR;
         potentialMove = winIfYouCan(opponent, cells);
         if (potentialMove != null) {
             return potentialMove;
         }
-        // otherwise make a random move
+        // otherwise makes a random move
         return super.plotNextMove(cells);
     }
 
@@ -44,7 +44,7 @@ public class MediumAI extends BaseAI {
                     cells[row][col] = piece;
                     rules = new RuleAnalyzer(cells);
                     if (rules.charHasWon(piece)) {
-                        //cells[row][col] = EMPTY_CELL;
+                        cells[row][col] = EMPTY_CELL;
                         return new Coordinate(row, col);
                     } else {
                         cells[row][col] = EMPTY_CELL;

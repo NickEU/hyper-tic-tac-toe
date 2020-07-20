@@ -2,10 +2,10 @@ package tictactoe.players;
 
 import tictactoe.Coordinate;
 
-public class ChampionAI extends BaseAI {
-    public ChampionAI(char xOrO) {
+public class HardAI extends BaseAI {
+    public HardAI(char xOrO) {
         super(xOrO);
-        this.name = "champion";
+        this.name = "hard";
     }
 
     @Override
@@ -18,4 +18,6 @@ public class ChampionAI extends BaseAI {
         // do champion stuff
         return super.plotNextMove(cells);
     }
+
+
 }

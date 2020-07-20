@@ -69,8 +69,8 @@ public class UserInterface {
             case "medium":
                 userChosen = PlayerType.MEDIUM;
                 break;
-            case "champion":
-                userChosen = PlayerType.CHAMPION;
+            case "hard":
+                userChosen = PlayerType.HARD;
                 break;
             default:
                 resetUserInputArgs();

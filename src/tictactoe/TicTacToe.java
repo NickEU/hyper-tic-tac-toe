@@ -3,7 +3,7 @@ package tictactoe;
 import tictactoe.enums.GameState;
 import tictactoe.enums.PlayerType;
 import tictactoe.players.BaseAI;
-import tictactoe.players.ChampionAI;
+import tictactoe.players.HardAI;
 import tictactoe.players.EasyAI;
 import tictactoe.players.Human;
 import tictactoe.players.MediumAI;
@@ -51,8 +51,8 @@ public class TicTacToe {
                 return new EasyAI(xOrO);
             case MEDIUM:
                 return new MediumAI(xOrO);
-            case CHAMPION:
-                return new ChampionAI(xOrO);
+            case HARD:
+                return new HardAI(xOrO);
             case HUMAN:
                 return new Human(xOrO);
             default:

@@ -4,6 +4,6 @@ public enum PlayerType {
     TRIVIAL,
     EASY,
     MEDIUM,
-    CHAMPION,
+    HARD,
     HUMAN,
 }
