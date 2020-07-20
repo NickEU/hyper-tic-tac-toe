@@ -1,13 +1,18 @@
 package tictactoe.players;
 
+import static tictactoe.GameBoard.O_CHAR;
+import static tictactoe.GameBoard.X_CHAR;
+
 public class Player {
-    protected char piece;
+    protected char myPiece;
+    protected char opponentsPiece;
 
     public Player(char xOrO) {
-        this.piece = xOrO;
+        this.myPiece = xOrO;
+        opponentsPiece = xOrO == X_CHAR ? O_CHAR : X_CHAR;
     }
 
-    protected char getPiece() {
-        return piece;
+    protected char getMyPiece() {
+        return myPiece;
     }
 }

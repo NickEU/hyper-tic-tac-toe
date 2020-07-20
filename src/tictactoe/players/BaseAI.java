@@ -7,6 +7,10 @@ import tictactoe.TicTacToe;
 import java.util.Arrays;
 import java.util.Random;
 
+import static tictactoe.GameBoard.EMPTY_CELL;
+import static tictactoe.GameBoard.O_CHAR;
+import static tictactoe.GameBoard.X_CHAR;
+
 public class BaseAI extends Player {
     protected Random rnd = new Random();
     protected String name = "base";
@@ -37,5 +41,23 @@ public class BaseAI extends Player {
     protected Coordinate plotNextMove(char[][] cells) {
         final int bound = 3;
         return new Coordinate(rnd.nextInt(bound), rnd.nextInt(bound));
+    }
+
+    protected Coordinate winIfYouCan(char piece, char[][] cells) {
+        for (int row = 0; row < cells.length; row++) {
+            for (int col = 0; col < cells[0].length; col++) {
+                if (cells[row][col] != X_CHAR && cells[row][col] != O_CHAR) {
+                    cells[row][col] = piece;
+                    rules = new RuleAnalyzer(cells);
+                    if (rules.charHasWon(piece)) {
+                        cells[row][col] = EMPTY_CELL;
+                        return new Coordinate(row, col);
+                    } else {
+                        cells[row][col] = EMPTY_CELL;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

@@ -117,7 +117,7 @@ public class RuleAnalyzer {
         return false;
     }
 
-    boolean noEmptyCellsLeft() {
+    public boolean noEmptyCellsLeft() {
         for (char[] row : getCells()) {
             for (char cell : row) {
                 if (cell != X_CHAR && cell != O_CHAR) {
@@ -126,5 +126,10 @@ public class RuleAnalyzer {
             }
         }
         return true;
+    }
+
+    public boolean cellIsEmpty(int row, int col) {
+        char cell = getCells()[row][col];
+        return cell != X_CHAR && cell != O_CHAR;
     }
 }
